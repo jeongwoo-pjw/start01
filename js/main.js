@@ -120,7 +120,7 @@ function setupContactForm() {
       return;
     }
 
-    const subject = encodeURIComponent(`[포트폴리오 문의] ${name}님의 메세지`);
+    const subject = encodeURIComponent(`[문의] ${name}님의 메세지`);
     const body    = encodeURIComponent(
       `이름: ${name}\n이메일: ${email}\n\n${message}`
     );
