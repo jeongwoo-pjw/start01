@@ -1,0 +1,22 @@
+/* ── Blossom  주컬러:#E8622A(로열오렌지)  보조:#F4956A(오렌지핑크)  이벤트:#FFB830 ── */
+[data-palette="blossom"] {
+  --clr-accent:      #E8622A;
+  --clr-accent2:     #F4956A;
+  --clr-accent-rgb:  232, 98, 42;
+  --clr-accent-glow: rgba(232, 98, 42, 0.38);
+  --clr-event:       #FFB830;
+  --clr-hero-glow1:  rgba(232, 98, 42, 0.16);
+  --clr-hero-glow2:  rgba(244, 149, 106, 0.08);
+}
+[data-palette="blossom"][data-mode="light"] {
+  --clr-accent:      #C0481A;
+  --clr-accent2:     #E8622A;
+  --clr-accent-rgb:  192, 72, 26;
+  --clr-accent-glow: rgba(192, 72, 26, 0.28);
+  --clr-event:       #D97706;
+  --clr-hero-glow1:  rgba(192, 72, 26, 0.10);
+  --clr-hero-glow2:  rgba(232, 98, 42, 0.06);
+  --clr-bg:          #fef9f5;
+  --clr-bg2:         #f5ede5;
+  --clr-border:      #e8d5c2;
+}

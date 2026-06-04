@@ -1,0 +1,23 @@
+/* ── Violet  주컬러:#c96cbf  보조:#e8a4df  이벤트:#7c3aed ── */
+:root,
+[data-palette="violet"] {
+  --clr-accent:      #c96cbf;
+  --clr-accent2:     #e8a4df;
+  --clr-accent-rgb:  201, 108, 191;
+  --clr-accent-glow: rgba(201, 108, 191, 0.38);
+  --clr-event:       #7c3aed;
+  --clr-hero-glow1:  rgba(201, 108, 191, 0.15);
+  --clr-hero-glow2:  rgba(232, 164, 223, 0.08);
+}
+[data-palette="violet"][data-mode="light"] {
+  --clr-accent:      #9c3595;
+  --clr-accent2:     #c96cbf;
+  --clr-accent-rgb:  156, 53, 149;
+  --clr-accent-glow: rgba(156, 53, 149, 0.28);
+  --clr-event:       #6d28d9;
+  --clr-hero-glow1:  rgba(156, 53, 149, 0.10);
+  --clr-hero-glow2:  rgba(201, 108, 191, 0.06);
+  --clr-bg:          #faf7fc;
+  --clr-bg2:         #f0eaf5;
+  --clr-border:      #ddd0e8;
+}

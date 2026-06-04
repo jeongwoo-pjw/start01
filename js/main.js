@@ -220,7 +220,10 @@ function setupParticles() {
     particles.forEach(p => {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(201,108,191,${p.alpha})`;
+      const rgb = window._accentRgb ||
+        getComputedStyle(document.documentElement).getPropertyValue('--clr-accent-rgb').trim() ||
+        '201,108,191';
+      ctx.fillStyle = `rgba(${rgb},${p.alpha})`;
       ctx.fill();
       p.x += p.dx;
       p.y += p.dy;

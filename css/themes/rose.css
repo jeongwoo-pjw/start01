@@ -1,0 +1,22 @@
+/* ── Rose  주컬러:#D63864(로즈)  보조:#EE8CAA(라이트로즈핑크)  이벤트:#FB7185 ── */
+[data-palette="rose"] {
+  --clr-accent:      #D63864;
+  --clr-accent2:     #EE8CAA;
+  --clr-accent-rgb:  214, 56, 100;
+  --clr-accent-glow: rgba(214, 56, 100, 0.38);
+  --clr-event:       #FB7185;
+  --clr-hero-glow1:  rgba(214, 56, 100, 0.15);
+  --clr-hero-glow2:  rgba(238, 140, 170, 0.08);
+}
+[data-palette="rose"][data-mode="light"] {
+  --clr-accent:      #B02050;
+  --clr-accent2:     #D63864;
+  --clr-accent-rgb:  176, 32, 80;
+  --clr-accent-glow: rgba(176, 32, 80, 0.28);
+  --clr-event:       #E11D48;
+  --clr-hero-glow1:  rgba(176, 32, 80, 0.10);
+  --clr-hero-glow2:  rgba(214, 56, 100, 0.06);
+  --clr-bg:          #fef5f8;
+  --clr-bg2:         #f5e8ee;
+  --clr-border:      #e8ccd6;
+}

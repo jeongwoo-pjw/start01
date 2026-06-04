@@ -1,0 +1,22 @@
+/* ── Slate  주컬러:#5C7FA0(블루그레이)  보조:#A8C0D0(라이트그레이블루)  이벤트:#38BDF8 ── */
+[data-palette="slate"] {
+  --clr-accent:      #5C7FA0;
+  --clr-accent2:     #A8C0D0;
+  --clr-accent-rgb:  92, 127, 160;
+  --clr-accent-glow: rgba(92, 127, 160, 0.40);
+  --clr-event:       #38BDF8;
+  --clr-hero-glow1:  rgba(92, 127, 160, 0.18);
+  --clr-hero-glow2:  rgba(168, 192, 208, 0.09);
+}
+[data-palette="slate"][data-mode="light"] {
+  --clr-accent:      #3D6080;
+  --clr-accent2:     #5C7FA0;
+  --clr-accent-rgb:  61, 96, 128;
+  --clr-accent-glow: rgba(61, 96, 128, 0.28);
+  --clr-event:       #0284C7;
+  --clr-hero-glow1:  rgba(61, 96, 128, 0.10);
+  --clr-hero-glow2:  rgba(92, 127, 160, 0.06);
+  --clr-bg:          #f4f7fa;
+  --clr-bg2:         #e8eef4;
+  --clr-border:      #ccd8e4;
+}

@@ -1,0 +1,22 @@
+/* ── Ocean  주컬러:#0B9E8E(딥틸)  보조:#5ED0C6(라이트틸)  이벤트:#06B6D4 ── */
+[data-palette="ocean"] {
+  --clr-accent:      #0B9E8E;
+  --clr-accent2:     #5ED0C6;
+  --clr-accent-rgb:  11, 158, 142;
+  --clr-accent-glow: rgba(11, 158, 142, 0.38);
+  --clr-event:       #06B6D4;
+  --clr-hero-glow1:  rgba(11, 158, 142, 0.16);
+  --clr-hero-glow2:  rgba(94, 208, 198, 0.08);
+}
+[data-palette="ocean"][data-mode="light"] {
+  --clr-accent:      #07796D;
+  --clr-accent2:     #0B9E8E;
+  --clr-accent-rgb:  7, 121, 109;
+  --clr-accent-glow: rgba(7, 121, 109, 0.28);
+  --clr-event:       #0891B2;
+  --clr-hero-glow1:  rgba(7, 121, 109, 0.10);
+  --clr-hero-glow2:  rgba(11, 158, 142, 0.06);
+  --clr-bg:          #f2fafa;
+  --clr-bg2:         #e4f4f4;
+  --clr-border:      #c4e0de;
+}
