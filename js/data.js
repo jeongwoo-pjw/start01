@@ -57,7 +57,7 @@ const RESUME = {
     {
       period:  "2020 – 2022",
       title:   "온라인몰 운영 MD",
-      org:     "NC백화점 보에띠",
+      org:     "NC백화점",
       current: false,
       desc: [
         "온라인몰 운영 MD (상세페이지 제작, 촬영, CS 등)",
