@@ -72,7 +72,7 @@ const RESUME = {
     },
     {
       period: "2016",
-      title:  "졸업",
+      title:  "서울여자고등학교 졸업",
       org:    "서울여자고등학교",
       desc:   []
     },
