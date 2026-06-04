@@ -177,7 +177,10 @@ function setupNav() {
 function setupHeroEffects() {
   setupParticles();
   setupTyping();
-  setupParallax();
+  setupSpotlight();
+  setupFloatingOrb();
+  setup3DTilt();
+  setupStaggerFadeIn();
 }
 
 /* 1) Particle canvas */
@@ -207,7 +210,7 @@ function setupParticles() {
     };
   }
 
-  function init() {
+  function initParticles() {
     resize();
     particles = Array.from({ length: 80 }, makeParticle);
   }
@@ -219,7 +222,6 @@ function setupParticles() {
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(201,108,191,${p.alpha})`;
       ctx.fill();
-
       p.x += p.dx;
       p.y += p.dy;
       if (p.x < 0 || p.x > W) p.dx *= -1;
@@ -229,7 +231,7 @@ function setupParticles() {
   }
 
   window.addEventListener('resize', resize);
-  init();
+  initParticles();
   draw();
 }
 
@@ -248,7 +250,6 @@ function setupTyping() {
       i++;
       setTimeout(type, i === text.length + 1 ? 600 : 90);
     } else {
-      // blink cursor then remove
       let blinks = 0;
       const blink = setInterval(() => {
         el.style.borderRightColor = blinks % 2 === 0 ? 'transparent' : 'var(--clr-accent)';
@@ -259,24 +260,92 @@ function setupTyping() {
   setTimeout(type, 600);
 }
 
-/* 3) Mouse parallax on profile photo */
-function setupParallax() {
+/* 3) Mouse spotlight – 보라색 글로우가 hero 위에서 마우스를 따라다님 */
+function setupSpotlight() {
+  const hero = document.querySelector('.hero');
+  const spot = document.createElement('div');
+  spot.id = 'heroSpotlight';
+  hero.appendChild(spot);
+
+  hero.addEventListener('mousemove', e => {
+    const rect = hero.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    spot.style.background =
+      `radial-gradient(520px circle at ${x}px ${y}px, rgba(180,80,220,0.13), transparent 65%)`;
+    spot.style.opacity = '1';
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    spot.style.opacity = '0';
+  });
+}
+
+/* 4) Floating orb – 우측 상단 청록색 블러 오브, 8초 주기 부유 */
+function setupFloatingOrb() {
+  const hero = document.querySelector('.hero');
+  const orb = document.createElement('div');
+  orb.className = 'hero-orb';
+  hero.appendChild(orb);
+}
+
+/* 5) 3D Tilt + Shine – 프로필 사진 위에서 기울어짐 & 광택 이동 */
+function setup3DTilt() {
   const ring = document.querySelector('.hero-photo-ring');
   if (!ring) return;
 
-  document.addEventListener('mousemove', e => {
-    const cx = window.innerWidth  / 2;
-    const cy = window.innerHeight / 2;
-    const dx = (e.clientX - cx) / cx;  // -1 ~ 1
-    const dy = (e.clientY - cy) / cy;
-    ring.style.transform = `translate(${dx * 12}px, ${dy * 10}px)`;
+  const shine = document.createElement('div');
+  shine.className = 'photo-shine';
+  ring.appendChild(shine);
+
+  ring.addEventListener('mousemove', e => {
+    const rect = ring.getBoundingClientRect();
+    const cx = rect.width  / 2;
+    const cy = rect.height / 2;
+    const dx = (e.clientX - rect.left - cx) / cx;
+    const dy = (e.clientY - rect.top  - cy) / cy;
+
+    ring.style.transform =
+      `perspective(700px) rotateY(${dx * 14}deg) rotateX(${-dy * 14}deg) scale(1.04)`;
+
+    const sx = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
+    const sy = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
+    shine.style.background =
+      `radial-gradient(circle at ${sx}% ${sy}%, rgba(255,255,255,0.22) 0%, transparent 55%)`;
+    shine.style.opacity = '1';
   });
 
-  document.addEventListener('mouseleave', () => {
-    ring.style.transform = 'translate(0,0)';
+  ring.addEventListener('mouseleave', () => {
+    ring.style.transform = 'perspective(700px) rotateY(0deg) rotateX(0deg) scale(1)';
+    shine.style.opacity = '0';
   });
 
-  ring.style.transition = 'transform 0.15s ease-out';
+  ring.style.transition = 'transform 0.12s ease-out';
+}
+
+/* 6) Stagger fade-in – hero 텍스트 요소가 순서대로 등장 */
+function setupStaggerFadeIn() {
+  const targets = [
+    { sel: '.hero-greeting', delay: 0    },
+    { sel: '.hero-name',     delay: 180  },
+    { sel: '.hero-role',     delay: 360  },
+    { sel: '.hero-bio',      delay: 520  },
+    { sel: '.hero-btns',     delay: 700  },
+    { sel: '.hero-photo-wrap', delay: 200 },
+  ];
+
+  targets.forEach(({ sel, delay }) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    el.classList.remove('visible');
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = `opacity 0.65s ease ${delay}ms, transform 0.65s ease ${delay}ms`;
+    setTimeout(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 80);
+  });
 }
 
 /* ── Init ── */
@@ -287,11 +356,6 @@ function init() {
   renderTimeline(RESUME.certifications, 'certTimeline');
   renderProjects();
   renderContact();
-
-  // initial fade-up trigger for hero elements
-  setTimeout(() => {
-    document.querySelectorAll('.hero .fade-up').forEach(el => el.classList.add('visible'));
-  }, 100);
 
   setupObserver();
   setupNav();

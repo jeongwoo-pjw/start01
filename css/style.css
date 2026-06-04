@@ -258,6 +258,48 @@ img { max-width: 100%; display: block; }
   color: var(--clr-accent);
 }
 
+/* ── Hero Spotlight ── */
+#heroSpotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* ── Floating Orb ── */
+.hero-orb {
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,220,200,0.22) 0%, rgba(0,180,180,0.08) 50%, transparent 70%);
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: 0;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+@keyframes orbFloat {
+  0%,100% { transform: translate(0px,   0px)  scale(1);    }
+  25%      { transform: translate(-22px, 28px) scale(1.06); }
+  50%      { transform: translate(-10px, 50px) scale(0.94); }
+  75%      { transform: translate(-32px, 18px) scale(1.03); }
+}
+
+/* ── Photo Shine ── */
+.photo-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
 .scroll-indicator {
   position: absolute;
   bottom: 36px;
