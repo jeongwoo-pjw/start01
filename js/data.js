@@ -86,24 +86,9 @@ const RESUME = {
 
   /* ── 자격증 ── */
   certifications: [
-    {
-      period: "2024",
-      title:  "GTQ I 1급",
-      org:    "한국생산성본부",
-      desc:   []
-    },
-    {
-      period: "2018",
-      title:  "전산회계 1급",
-      org:    "한국세무사회",
-      desc:   []
-    },
-    {
-      period: "2016",
-      title:  "MOS PowerPoint",
-      org:    "Microsoft",
-      desc:   []
-    },
+    { period: "2024", title: "GTQ I 1급",       org: "한국생산성본부", icon: "🎨" },
+    { period: "2018", title: "전산회계 1급",     org: "한국세무사회",  icon: "📒" },
+    { period: "2016", title: "MOS PowerPoint",   org: "Microsoft",    icon: "📊" },
   ],
 
   /* ── 프로젝트 ── */

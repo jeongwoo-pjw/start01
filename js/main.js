@@ -87,6 +87,55 @@ function renderProjects() {
   `).join('');
 }
 
+/* ── Cert Cards ── */
+function renderCertCards() {
+  const el = document.getElementById('certCards');
+  if (!el) return;
+  el.innerHTML = RESUME.certifications.map(c => `
+    <div class="cert-card fade-up">
+      <span class="cert-icon">${c.icon || '📜'}</span>
+      <div class="cert-info">
+        <span class="cert-name">${c.title}</span>
+        <span class="cert-org">${c.org}</span>
+        <span class="cert-year">${c.period}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ── Contact Form ── */
+function setupContactForm() {
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  if (!form) return;
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name    = form.name.value.trim();
+    const email   = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !email || !message) {
+      showStatus('모든 항목을 입력해주세요.', 'error');
+      return;
+    }
+
+    const subject = encodeURIComponent(`[포트폴리오 문의] ${name}님의 메세지`);
+    const body    = encodeURIComponent(
+      `이름: ${name}\n이메일: ${email}\n\n${message}`
+    );
+    window.open(`mailto:${RESUME.email}?subject=${subject}&body=${body}`, '_self');
+    showStatus('메일 앱이 열렸습니다 ✓', 'ok');
+    form.reset();
+  });
+
+  function showStatus(msg, type) {
+    status.textContent = msg;
+    status.className = `form-status show ${type}`;
+    setTimeout(() => status.classList.remove('show'), 3500);
+  }
+}
+
 /* ── Contact ── */
 function renderContact() {
   const grid = document.getElementById('contactGrid');
@@ -341,11 +390,12 @@ function setupStaggerFadeIn() {
 /* ── Init ── */
 function init() {
   renderSkills();
-  renderTimeline(RESUME.experience,     'experienceTimeline');
-  renderTimeline(RESUME.education,      'educationTimeline');
-  renderTimeline(RESUME.certifications, 'certTimeline');
+  renderTimeline(RESUME.experience, 'experienceTimeline');
+  renderTimeline(RESUME.education,  'educationTimeline');
+  renderCertCards();
   renderProjects();
   renderContact();
+  setupContactForm();
 
   setupObserver();
   setupNav();

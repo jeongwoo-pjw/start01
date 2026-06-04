@@ -147,7 +147,7 @@
     <div class="container">
       <div class="section-label">Certificate</div>
       <h2 class="section-title">자격증</h2>
-      <div class="timeline" id="certTimeline"></div>
+      <div class="cert-cards" id="certCards"></div>
     </div>
   </section>
 
@@ -168,9 +168,29 @@
       <div class="section-label">Contact</div>
       <h2 class="section-title">연락처</h2>
       <p class="contact-intro">새로운 기회와 협업을 언제나 환영합니다.</p>
-      <div class="contact-grid" id="contactGrid">
-        <!-- JS로 data.js 기반 렌더링 -->
-      </div>
+      <div class="contact-grid" id="contactGrid"></div>
+
+      <!-- 메세지 폼 -->
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">이름</label>
+            <input type="text" id="fname" name="name" placeholder="홍길동" required />
+          </div>
+          <div class="form-group">
+            <label for="femail">이메일</label>
+            <input type="email" id="femail" name="email" placeholder="example@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fmessage">메세지</label>
+          <textarea id="fmessage" name="message" rows="5" placeholder="안녕하세요! 협업 관련하여 문의드립니다..." required></textarea>
+        </div>
+        <div class="form-submit-row">
+          <button type="submit" class="btn btn-primary">메세지 보내기 ✉</button>
+          <span class="form-status" id="formStatus"></span>
+        </div>
+      </form>
     </div>
   </section>
 
