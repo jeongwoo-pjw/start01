@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>박정우 | Portfolio</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">JW.</a>
+      <ul class="nav-links">
+        <li><a href="#about">소개</a></li>
+        <li><a href="#skills">기술</a></li>
+        <li><a href="#experience">경력</a></li>
+        <li><a href="#education">학력</a></li>
+        <li><a href="#projects">프로젝트</a></li>
+        <li><a href="#contact">연락처</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="메뉴">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">소개</a>
+      <a href="#skills">기술</a>
+      <a href="#experience">경력</a>
+      <a href="#education">학력</a>
+      <a href="#projects">프로젝트</a>
+      <a href="#contact">연락처</a>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-gradient"></div>
+    <div class="container hero-grid">
+      <div class="hero-text fade-up">
+        <p class="hero-greeting">안녕하세요 👋</p>
+        <h1 class="hero-name">박 정 우</h1>
+        <p class="hero-role" id="heroRole"><!-- TODO: 직함 (예: Full-Stack Developer) --></p>
+        <p class="hero-bio" id="heroBio">
+          <!-- TODO: 한두 줄 자기소개 -->
+        </p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
+          <a href="#contact" class="btn btn-ghost">연락하기</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap fade-up delay-1">
+        <div class="hero-photo-ring">
+          <img
+            id="profileImg"
+            class="hero-photo"
+            src="assets/images/profile.jpg"
+            alt="박정우 프로필 사진"
+            onerror="this.style.display='none';document.getElementById('profileFallback').style.display='flex'"
+          />
+          <div class="hero-photo-fallback" id="profileFallback">JW</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-dot"></div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-label">About</div>
+      <h2 class="section-title">소개</h2>
+      <div class="about-grid">
+        <div class="about-text fade-up">
+          <p id="aboutText"><!-- TODO: 자세한 자기소개 문단 --></p>
+        </div>
+        <div class="about-stats fade-up delay-1">
+          <div class="stat-card">
+            <span class="stat-num" id="statYears">0</span>
+            <span class="stat-label">년 경력</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" id="statProjects">0</span>
+            <span class="stat-label">완료 프로젝트</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" id="statCerts">0</span>
+            <span class="stat-label">자격증</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ── -->
+  <section class="section section-dark" id="skills">
+    <div class="container">
+      <div class="section-label">Skills</div>
+      <h2 class="section-title">기술 스택</h2>
+      <div class="skills-grid" id="skillsGrid">
+        <!-- JS로 data.js 기반 렌더링 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experience ── -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-label">Experience</div>
+      <h2 class="section-title">경력</h2>
+      <div class="timeline" id="experienceTimeline">
+        <!-- JS로 data.js 기반 렌더링 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Education ── -->
+  <section class="section section-dark" id="education">
+    <div class="container">
+      <div class="section-label">Education</div>
+      <h2 class="section-title">학력 / 자격증</h2>
+      <div class="timeline" id="educationTimeline">
+        <!-- JS로 data.js 기반 렌더링 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ── -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-label">Projects</div>
+      <h2 class="section-title">프로젝트</h2>
+      <div class="projects-grid" id="projectsGrid">
+        <!-- JS로 data.js 기반 렌더링 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <section class="section section-dark" id="contact">
+    <div class="container contact-wrap">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">연락처</h2>
+      <p class="contact-intro">새로운 기회와 협업을 언제나 환영합니다.</p>
+      <div class="contact-grid" id="contactGrid">
+        <!-- JS로 data.js 기반 렌더링 -->
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 박정우 · Made with ❤️</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
