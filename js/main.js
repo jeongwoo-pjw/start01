@@ -1,7 +1,7 @@
 /* ── Data injection ── */
-document.querySelector('.hero-role').textContent      = RESUME.role;
 document.querySelector('.hero-bio').textContent       = RESUME.heroBio;
 document.querySelector('#aboutText').textContent      = RESUME.aboutText;
+// hero-role은 타이핑 효과로 채움 (아래 setupHeroEffects)
 
 /* ── Stats counter animation ── */
 function animateCount(el, target, duration = 1400) {
@@ -173,6 +173,112 @@ function setupNav() {
   }, { passive: true });
 }
 
+/* ── Hero Effects ── */
+function setupHeroEffects() {
+  setupParticles();
+  setupTyping();
+  setupParallax();
+}
+
+/* 1) Particle canvas */
+function setupParticles() {
+  const hero = document.querySelector('.hero');
+  const canvas = document.createElement('canvas');
+  canvas.id = 'heroCanvas';
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;';
+  hero.insertBefore(canvas, hero.firstChild);
+
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+
+  function resize() {
+    W = canvas.width  = hero.offsetWidth;
+    H = canvas.height = hero.offsetHeight;
+  }
+
+  function makeParticle() {
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.8 + 0.4,
+      dx: (Math.random() - 0.5) * 0.35,
+      dy: (Math.random() - 0.5) * 0.35,
+      alpha: Math.random() * 0.5 + 0.1,
+    };
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({ length: 80 }, makeParticle);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201,108,191,${p.alpha})`;
+      ctx.fill();
+
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > W) p.dx *= -1;
+      if (p.y < 0 || p.y > H) p.dy *= -1;
+    });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  draw();
+}
+
+/* 2) Typewriter effect */
+function setupTyping() {
+  const el = document.querySelector('.hero-role');
+  const text = RESUME.role;
+  el.textContent = '';
+  el.style.borderRight = '2px solid var(--clr-accent)';
+  el.style.display = 'inline-block';
+
+  let i = 0;
+  function type() {
+    if (i <= text.length) {
+      el.textContent = text.slice(0, i);
+      i++;
+      setTimeout(type, i === text.length + 1 ? 600 : 90);
+    } else {
+      // blink cursor then remove
+      let blinks = 0;
+      const blink = setInterval(() => {
+        el.style.borderRightColor = blinks % 2 === 0 ? 'transparent' : 'var(--clr-accent)';
+        if (++blinks > 5) { clearInterval(blink); el.style.borderRight = 'none'; }
+      }, 400);
+    }
+  }
+  setTimeout(type, 600);
+}
+
+/* 3) Mouse parallax on profile photo */
+function setupParallax() {
+  const ring = document.querySelector('.hero-photo-ring');
+  if (!ring) return;
+
+  document.addEventListener('mousemove', e => {
+    const cx = window.innerWidth  / 2;
+    const cy = window.innerHeight / 2;
+    const dx = (e.clientX - cx) / cx;  // -1 ~ 1
+    const dy = (e.clientY - cy) / cy;
+    ring.style.transform = `translate(${dx * 12}px, ${dy * 10}px)`;
+  });
+
+  document.addEventListener('mouseleave', () => {
+    ring.style.transform = 'translate(0,0)';
+  });
+
+  ring.style.transition = 'transform 0.15s ease-out';
+}
+
 /* ── Init ── */
 function init() {
   renderSkills();
@@ -189,6 +295,7 @@ function init() {
 
   setupObserver();
   setupNav();
+  setupHeroEffects();
 }
 
 document.addEventListener('DOMContentLoaded', init);

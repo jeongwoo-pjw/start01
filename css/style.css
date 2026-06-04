@@ -196,6 +196,8 @@ img { max-width: 100%; display: block; }
   gap: 48px;
   align-items: center;
   padding: 80px 24px;
+  position: relative;
+  z-index: 1;
 }
 .hero-greeting {
   font-size: 1.1rem;
