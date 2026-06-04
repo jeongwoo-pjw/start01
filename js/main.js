@@ -176,8 +176,9 @@ function setupNav() {
 /* ── Init ── */
 function init() {
   renderSkills();
-  renderTimeline(RESUME.experience, 'experienceTimeline');
-  renderTimeline(RESUME.education,  'educationTimeline');
+  renderTimeline(RESUME.experience,     'experienceTimeline');
+  renderTimeline(RESUME.education,      'educationTimeline');
+  renderTimeline(RESUME.certifications, 'certTimeline');
   renderProjects();
   renderContact();
 
