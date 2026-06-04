@@ -395,26 +395,6 @@ img { max-width: 100%; display: block; }
   text-align: right;
 }
 
-/* ── Edu Split ── */
-.edu-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: start;
-}
-.edu-col-title {
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--clr-accent);
-  margin-bottom: 28px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--clr-border);
-}
-@media (max-width: 700px) {
-  .edu-split { grid-template-columns: 1fr; gap: 40px; }
-}
 
 /* ── Timeline ── */
 .timeline {
