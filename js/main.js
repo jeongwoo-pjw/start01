@@ -179,7 +179,6 @@ function setupHeroEffects() {
   setupTyping();
   setupSpotlight();
   setupFloatingOrb();
-  setup3DTilt();
   setupStaggerFadeIn();
 }
 
@@ -217,12 +216,33 @@ function setupParticles() {
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
+
+    const rgb = window._accentRgb ||
+      getComputedStyle(document.documentElement).getPropertyValue('--clr-accent-rgb').trim() ||
+      '201,108,191';
+    const MAX_DIST = 130;
+
+    // 연결선
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(${rgb},${(1 - dist / MAX_DIST) * 0.18})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // 파티클 점
     particles.forEach(p => {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      const rgb = window._accentRgb ||
-        getComputedStyle(document.documentElement).getPropertyValue('--clr-accent-rgb').trim() ||
-        '201,108,191';
       ctx.fillStyle = `rgba(${rgb},${p.alpha})`;
       ctx.fill();
       p.x += p.dx;
@@ -292,39 +312,6 @@ function setupFloatingOrb() {
   hero.appendChild(orb);
 }
 
-/* 5) 3D Tilt + Shine – 프로필 사진 위에서 기울어짐 & 광택 이동 */
-function setup3DTilt() {
-  const ring = document.querySelector('.hero-photo-ring');
-  if (!ring) return;
-
-  const shine = document.createElement('div');
-  shine.className = 'photo-shine';
-  ring.appendChild(shine);
-
-  ring.addEventListener('mousemove', e => {
-    const rect = ring.getBoundingClientRect();
-    const cx = rect.width  / 2;
-    const cy = rect.height / 2;
-    const dx = (e.clientX - rect.left - cx) / cx;
-    const dy = (e.clientY - rect.top  - cy) / cy;
-
-    ring.style.transform =
-      `perspective(700px) rotateY(${dx * 14}deg) rotateX(${-dy * 14}deg) scale(1.04)`;
-
-    const sx = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
-    const sy = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
-    shine.style.background =
-      `radial-gradient(circle at ${sx}% ${sy}%, rgba(255,255,255,0.22) 0%, transparent 55%)`;
-    shine.style.opacity = '1';
-  });
-
-  ring.addEventListener('mouseleave', () => {
-    ring.style.transform = 'perspective(700px) rotateY(0deg) rotateX(0deg) scale(1)';
-    shine.style.opacity = '0';
-  });
-
-  ring.style.transition = 'transform 0.12s ease-out';
-}
 
 /* 6) Stagger fade-in – hero 텍스트 요소가 순서대로 등장 */
 function setupStaggerFadeIn() {
